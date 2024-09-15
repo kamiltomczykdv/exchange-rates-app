@@ -5,4 +5,5 @@ import kamiltomczyk.recruitment.exchangeratesapp.data.network.NBPApiService
 class CurrencyRepository(
     private val nbpApiService: NBPApiService
 ) : CurrencyRepositoryInterface {
+
 }
