@@ -1,13 +1,41 @@
 [versions]
-agp = "8.5.1"
-kotlin = "1.9.0"
+#core
+agp = "8.5.2"
+kotlin = "1.9.25"
 coreKtx = "1.13.1"
+lifecycleRuntimeKtx = "2.8.5"
+kotlinReflect = "1.9.22"
+work = "2.9.1"
+
+#compose
+activityCompose = "1.9.2"
+composeBom = "2024.09.01"
+
+#coroutines
+coroutines = "1.7.3"
+kotlinxCoroutinesAndroid = "1.7.3"
+
+#di
+hiltAndroidCompiler = "2.47"
+hiltAndroidTesting = "2.44"
+daggerHilt = "2.49"
+androidxHilt = "1.2.0"
+
+#network
+retrofit2 = "2.9.0"
+okhttp3 = "4.12.0"
+
+#testing
+mockk = "1.13.10"
+uiTestJunit4Android = "1.7.1"
+composeNavigationTest = "2.8.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.5"
-activityCompose = "1.9.2"
-composeBom = "2024.04.01"
+
+#navigation
+composeNavigation = "2.8.0"
+composeHiltNavigation = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,6 +52,23 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
+hilt-worker = { group = "androidx.hilt", name = "hilt-work", version.ref = "androidxHilt" }
+hilt-kapt = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidxHilt" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinReflect" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesAndroid" }
+retrofit2-android = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+retrofit2-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2" }
+okhttp3-android = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+work-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+compose-test-navigation = { group = "androidx.navigation", name = "navigation-testing", version.ref = "composeNavigationTest" }
+compose-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHiltNavigation" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

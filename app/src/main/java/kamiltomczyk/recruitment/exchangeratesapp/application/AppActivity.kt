@@ -1,4 +1,4 @@
-package kamiltomczyk.recruitment.exchangeratesapp.ui.activity
+package kamiltomczyk.recruitment.exchangeratesapp.application
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
