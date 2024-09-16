@@ -1,5 +1,6 @@
 package kamiltomczyk.recruitment.exchangeratesapp.data.repositories
 
+import kamiltomczyk.recruitment.exchangeratesapp.data.date.getTwoWeeksDates
 import kamiltomczyk.recruitment.exchangeratesapp.data.enums.TableName
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.Rate
@@ -20,11 +21,13 @@ class CurrencyRepository(
         tableName: TableName,
         code: String
     ): List<Rate>? {
+        val twoWeeksDates = getTwoWeeksDates()
+
         val response = nbpApiService.getRatesOfCurrencyForDate(
             table = tableName.value,
             code = code,
-            startDate = "",
-            endDate = ""
+            startDate = twoWeeksDates.startDate,
+            endDate = twoWeeksDates.endDate
         )
 
         if (!response.isSuccessful) {
@@ -45,5 +48,4 @@ class CurrencyRepository(
         val currencyRatesData = response.body()
         return currencyRatesData?.rates
     }
-
 }
