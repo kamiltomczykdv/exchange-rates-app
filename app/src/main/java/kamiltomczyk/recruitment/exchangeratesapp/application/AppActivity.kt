@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import kamiltomczyk.recruitment.exchangeratesapp.navigation.graph.ExchangeRatesNavGraph
 import kamiltomczyk.recruitment.exchangeratesapp.ui.theme.ExchangeRatesAppTheme
 
 class AppActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class AppActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ExchangeRatesAppTheme {
-
+                ExchangeRatesNavGraph()
             }
         }
     }
