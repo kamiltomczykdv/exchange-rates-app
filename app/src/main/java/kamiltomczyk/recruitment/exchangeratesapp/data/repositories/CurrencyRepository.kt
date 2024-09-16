@@ -3,7 +3,7 @@ package kamiltomczyk.recruitment.exchangeratesapp.data.repositories
 import kamiltomczyk.recruitment.exchangeratesapp.data.date.getTwoWeeksDates
 import kamiltomczyk.recruitment.exchangeratesapp.data.enums.TableName
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
-import kamiltomczyk.recruitment.exchangeratesapp.data.models.Rate
+import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRateHistory
 import kamiltomczyk.recruitment.exchangeratesapp.data.network.NBPApiService
 import retrofit2.HttpException
 
@@ -20,7 +20,7 @@ class CurrencyRepository(
     override suspend fun getRatesOfCurrencyOfLastTwoWeeks(
         tableName: TableName,
         code: String
-    ): List<Rate>? {
+    ): CurrencyRateHistory? {
         val twoWeeksDates = getTwoWeeksDates()
 
         val response = nbpApiService.getRatesOfCurrencyForDate(
@@ -34,8 +34,7 @@ class CurrencyRepository(
             throw HttpException(response)
         }
 
-        val currencyRateHistory = response.body()
-        return currencyRateHistory?.rates
+        return response.body()
     }
 
     private suspend fun getExchangeRatesForTable(tableName: TableName): List<CurrencyRate>? {

@@ -1,4 +1,4 @@
-package kamiltomczyk.recruitment.exchangeratesapp.navigation
+package kamiltomczyk.recruitment.exchangeratesapp.navigation.routes
 
 object BaseRoutes {
     const val exchangeRates = "/exchange_rates"
