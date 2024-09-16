@@ -12,7 +12,7 @@ abstract class BaseViewModel : ViewModel() {
     protected val protectedUIState: MutableState<UIState> = mutableStateOf(UIState.Initialized)
     val uiState: State<UIState> = protectedUIState
 
-    val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+    protected val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         protectedUIState.value = if (exception is HttpException) {
             UIState.Error(
                 code = exception.code(),

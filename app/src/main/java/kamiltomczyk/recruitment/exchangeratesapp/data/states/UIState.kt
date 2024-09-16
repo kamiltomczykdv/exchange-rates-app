@@ -3,6 +3,7 @@ package kamiltomczyk.recruitment.exchangeratesapp.data.states
 sealed class UIState {
     data object Initialized : UIState()
     data object InProgress : UIState()
+    data object OnResults : UIState()
 
     data class Error(
         val code: Int? = null,
