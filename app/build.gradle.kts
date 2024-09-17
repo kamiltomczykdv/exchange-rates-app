@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -74,15 +73,15 @@ dependencies {
     implementation(libs.work.ktx)
 
     testImplementation(libs.junit)
-    testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk)
+    testImplementation(libs.android.core.testing)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.compose.test.navigation)
     androidTestImplementation(libs.androidx.ui.test.junit4.android)
 

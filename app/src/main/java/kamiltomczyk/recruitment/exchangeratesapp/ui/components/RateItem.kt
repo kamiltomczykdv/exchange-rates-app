@@ -50,7 +50,7 @@ fun prepareColorForRate(
     rateOfItem: Double,
     averageRate: Double
 ): Color {
-    val threshold = averageRate * 0.10
+    val threshold = averageRate * 0.1
     val difference = abs(rateOfItem - averageRate)
 
     return if (difference > threshold) Color.Red

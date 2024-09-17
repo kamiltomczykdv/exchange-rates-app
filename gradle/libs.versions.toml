@@ -6,6 +6,7 @@ coreKtx = "1.13.1"
 lifecycleRuntimeKtx = "2.8.5"
 kotlinReflect = "1.9.22"
 work = "2.9.1"
+androidCoreTesting = "1.1.1"
 
 #compose
 activityCompose = "1.9.2"
@@ -70,6 +71,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
+android-core-testing = { group = "android.arch.core", name = "core-testing", version.ref = "androidCoreTesting" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
