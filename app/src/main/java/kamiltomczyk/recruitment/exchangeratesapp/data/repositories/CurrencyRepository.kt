@@ -19,13 +19,13 @@ class CurrencyRepository(
     }
 
     override suspend fun getRatesOfCurrencyOfLastTwoWeeks(
-        tableName: TableName,
+        tableName: String,
         code: String
     ): CurrencyRateHistory? {
         val twoWeeksDates = getTwoWeeksDates()
 
         val response = nbpApiService.getRatesOfCurrencyForDate(
-            table = tableName.value,
+            table = tableName,
             code = code,
             startDate = twoWeeksDates.startDate,
             endDate = twoWeeksDates.endDate

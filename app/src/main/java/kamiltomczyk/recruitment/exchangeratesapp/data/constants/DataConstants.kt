@@ -8,6 +8,7 @@ class DataConstants {
             "exchangerates/rates/{table}/{code}/{startDate}/{endDate}/"
         const val TABLE_A_NAME = "a"
         const val TABLE_B_NAME = "b"
+        const val DEFAULT_CODE_KEY = "USD"
         const val TABLE_KEY = "table"
         const val CODE_KEY = "code"
         const val START_DATE_KEY = "startDate"
@@ -22,6 +23,7 @@ class DataConstants {
     object InternalKeys {
         const val TABLE_INTERNAL_KEY = "table"
         const val CODE_INTERNAL_KEY = "code"
+        const val AVERAGE_RATE_KEY = "averageRate"
     }
 
     object LayoutValues {

@@ -45,9 +45,12 @@ fun getCurrency(backStackEntry: NavBackStackEntry): Currency {
     val tableName =
         backStackEntry.arguments?.getString(DataConstants.InternalKeys.TABLE_INTERNAL_KEY)
     val code = backStackEntry.arguments?.getString(DataConstants.InternalKeys.CODE_INTERNAL_KEY)
+    val averageRate =
+        backStackEntry.arguments?.getString(DataConstants.InternalKeys.AVERAGE_RATE_KEY)
 
     return Currency(
         tableName = tableName,
-        code = code
+        code = code,
+        averageRate = averageRate?.toDouble()
     )
 }

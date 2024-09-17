@@ -33,7 +33,7 @@ class ExchangeRatesViewModel @Inject constructor(
         }
     }
 
-    fun getRatesOfCurrencyOfLastTwoWeeks(tableName: TableName, code: String) {
+    fun getRatesOfCurrencyOfLastTwoWeeks(tableName: String, code: String) {
         executeAsynchronousAction {
             internalCurrencyRateHistoryState.value = currencyRepositoryInterface
                 .getRatesOfCurrencyOfLastTwoWeeks(

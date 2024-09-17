@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -32,7 +34,9 @@ fun CurrencyItem(
     ) {
         Row(
             modifier = Modifier
+                .fillMaxWidth()
                 .background(Color.White)
+                .padding(horizontal = dimensionResource(id = R.dimen.standard_padding))
                 .clickable { onClickAction.invoke(currencyRate) },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -59,6 +63,7 @@ fun InfoSection(currencyRate: CurrencyRate) {
 @Composable
 fun ImageSection(tableName: String?) {
     Column(
+        modifier = Modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.SpaceBetween
     ) {

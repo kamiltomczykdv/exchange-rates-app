@@ -109,5 +109,6 @@ fun ExchangeRatesList(
 
 fun prepareCurrencyBaseOnRate(currencyRate: CurrencyRate) = Currency(
     tableName = currencyRate.tableName,
-    code = currencyRate.code
+    code = currencyRate.code,
+    averageRate = currencyRate.calculatedAverageRate
 )
