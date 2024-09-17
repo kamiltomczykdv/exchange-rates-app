@@ -2,6 +2,7 @@ package kamiltomczyk.recruitment.exchangeratesapp.data.repositories
 
 import kamiltomczyk.recruitment.exchangeratesapp.data.date.getTwoWeeksDates
 import kamiltomczyk.recruitment.exchangeratesapp.data.enums.TableName
+import kamiltomczyk.recruitment.exchangeratesapp.data.extension.addTableName
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRateHistory
 import kamiltomczyk.recruitment.exchangeratesapp.data.network.NBPApiService
@@ -45,6 +46,9 @@ class CurrencyRepository(
         }
 
         val currencyRatesData = response.body()
-        return currencyRatesData?.rates
+        val currencyRates = currencyRatesData?.rates
+
+        currencyRates?.addTableName(tableName.value)
+        return currencyRates
     }
 }
