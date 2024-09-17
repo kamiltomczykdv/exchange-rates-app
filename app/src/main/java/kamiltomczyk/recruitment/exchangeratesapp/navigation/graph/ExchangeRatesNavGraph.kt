@@ -1,6 +1,7 @@
 package kamiltomczyk.recruitment.exchangeratesapp.navigation.graph
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -9,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kamiltomczyk.recruitment.exchangeratesapp.data.constants.DataConstants
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.Currency
+import kamiltomczyk.recruitment.exchangeratesapp.data.providers.Providers
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.ExchangeRatesScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.RateDetailScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.view_model.ExchangeRatesViewModel
@@ -20,13 +22,20 @@ fun ExchangeRatesNavGraph(
     navController: NavHostController = rememberNavController(),
     exchangeRatesViewModel: ExchangeRatesViewModel = hiltViewModel<ExchangeRatesViewModel>()
 ) {
-    NavHost(navController = navController, startDestination = startDestination) {
-        composable(route = ExchangeRatesRoute.CurrenciesRates.path) {
-            ExchangeRatesScreen()
-        }
+    with(Providers) {
+        CompositionLocalProvider(
+            localNavControllerProvider provides navController,
+            localViewModelProvider provides exchangeRatesViewModel
+        ) {
+            NavHost(navController = navController, startDestination = startDestination) {
+                composable(route = ExchangeRatesRoute.CurrenciesRates.path) {
+                    ExchangeRatesScreen()
+                }
 
-        composable(route = ExchangeRatesRoute.Rate.path) { backStackEntry ->
-            RateDetailScreen(getCurrency(backStackEntry))
+                composable(route = ExchangeRatesRoute.Rate.path) { backStackEntry ->
+                    RateDetailScreen(getCurrency(backStackEntry))
+                }
+            }
         }
     }
 }
