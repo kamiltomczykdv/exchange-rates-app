@@ -6,5 +6,5 @@ data class CurrencyRatesData(
     val table: String,
     @SerializedName("no") val tableNumber: String,
     val effectiveDate: String,
-    val rates: List<CurrencyRate>
+    val rates: ArrayList<CurrencyRate>
 )

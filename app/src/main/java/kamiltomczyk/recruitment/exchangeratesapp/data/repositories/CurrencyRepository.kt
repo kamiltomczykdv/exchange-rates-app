@@ -46,7 +46,7 @@ class CurrencyRepository(
         }
 
         val currencyRatesData = response.body()
-        val currencyRates = currencyRatesData?.rates
+        val currencyRates = currencyRatesData?.get(0)?.rates
 
         currencyRates?.addTableName(tableName.value)
         return currencyRates
