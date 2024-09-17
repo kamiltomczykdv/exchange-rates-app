@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -83,6 +85,10 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.compose.test.navigation)
     androidTestImplementation(libs.androidx.ui.test.junit4.android)
+
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.kapt)
+    kaptAndroidTest(libs.hilt.android.compiler)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

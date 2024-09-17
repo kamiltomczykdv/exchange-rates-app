@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kamiltomczyk.recruitment.exchangeratesapp.data.base.BaseViewModel
-import kamiltomczyk.recruitment.exchangeratesapp.data.enums.TableName
+import kamiltomczyk.recruitment.exchangeratesapp.data.extension.sortByDate
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
-import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRateHistory
+import kamiltomczyk.recruitment.exchangeratesapp.data.models.Rate
 import kamiltomczyk.recruitment.exchangeratesapp.data.repositories.CurrencyRepositoryInterface
 import kamiltomczyk.recruitment.exchangeratesapp.data.states.UIState
 import kotlinx.coroutines.launch
@@ -23,9 +23,9 @@ class ExchangeRatesViewModel @Inject constructor(
     )
     val currencyRatesState: State<List<CurrencyRate>?> = internalCurrencyRatesState
 
-    private val internalCurrencyRateHistoryState: MutableState<CurrencyRateHistory?> =
-        mutableStateOf(CurrencyRateHistory())
-    val currencyRateHistoryState: State<CurrencyRateHistory?> = internalCurrencyRateHistoryState
+    private val internalRatesState: MutableState<List<Rate>?> =
+        mutableStateOf(listOf())
+    val ratesState: State<List<Rate>?> = internalRatesState
 
     fun getCurrentExchangeRates() {
         executeAsynchronousAction {
@@ -33,13 +33,14 @@ class ExchangeRatesViewModel @Inject constructor(
         }
     }
 
-    fun getRatesOfCurrencyOfLastTwoWeeks(tableName: TableName, code: String) {
+    fun getRatesOfCurrencyOfLastTwoWeeks(tableName: String, code: String) {
         executeAsynchronousAction {
-            internalCurrencyRateHistoryState.value = currencyRepositoryInterface
+            val rates = currencyRepositoryInterface
                 .getRatesOfCurrencyOfLastTwoWeeks(
                     tableName = tableName,
                     code = code
-                )
+                )?.rates
+            internalRatesState.value = rates?.sortByDate()
         }
     }
 

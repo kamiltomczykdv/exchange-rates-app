@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ExchangeRatesApp</string>
+    <string name="back_button_description">Go back</string>
+    <string name="help_button_description">Go to help page</string>
+    <string name="currency_icon_description">Currency element</string>
+    <string name="exchange_rates_title">Home</string>
+    <string name="currency_details_title">Currency details</string>
+    <string name="no_currencies_info">No currencies available</string>
+    <string name="no_rates_info">No rates available</string>
+    <string name="average_rate_text">Average rate: </string>
 </resources>

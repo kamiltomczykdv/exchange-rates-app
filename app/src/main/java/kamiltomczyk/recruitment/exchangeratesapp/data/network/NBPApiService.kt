@@ -11,7 +11,7 @@ interface NBPApiService {
     @GET(DataConstants.NBPApi.CURRENT_EXCHANGE_RATES)
     suspend fun getCurrentExchangeRates(
         @Path(DataConstants.NBPApi.TABLE_KEY) table: String
-    ): Response<CurrencyRatesData>
+    ): Response<List<CurrencyRatesData>>
 
     @GET(DataConstants.NBPApi.RATES_OF_CURRENCY_FOR_DATE)
     suspend fun getRatesOfCurrencyForDate(
