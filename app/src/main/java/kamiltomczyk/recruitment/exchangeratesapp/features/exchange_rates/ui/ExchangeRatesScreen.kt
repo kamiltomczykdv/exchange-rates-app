@@ -22,6 +22,7 @@ import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.view_mo
 import kamiltomczyk.recruitment.exchangeratesapp.navigation.extension.withCurrency
 import kamiltomczyk.recruitment.exchangeratesapp.navigation.routes.ExchangeRatesRoute
 import kamiltomczyk.recruitment.exchangeratesapp.ui.components.AppToolbar
+import kamiltomczyk.recruitment.exchangeratesapp.ui.components.CurrencyItem
 import kamiltomczyk.recruitment.exchangeratesapp.ui.components.InfoText
 import kamiltomczyk.recruitment.exchangeratesapp.ui.components.ProgressSpinner
 
@@ -90,8 +91,18 @@ fun ExchangeRatesList(
     onCurrencyClickAction: (currency: Currency) -> Unit
 ) {
     LazyColumn {
-        items(currencyRates) { rate ->
-
+        items(currencyRates) { currencyRate ->
+            CurrencyItem(
+                currencyRate = currencyRate,
+                onClickAction = { currencyRateItem ->
+                    onCurrencyClickAction(prepareCurrencyBaseOnRate(currencyRateItem))
+                }
+            )
         }
     }
 }
+
+fun prepareCurrencyBaseOnRate(currencyRate: CurrencyRate) = Currency(
+    tableName = currencyRate.tableName,
+    code = currencyRate.code
+)

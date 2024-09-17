@@ -14,6 +14,7 @@ import kamiltomczyk.recruitment.exchangeratesapp.data.providers.Providers
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.ExchangeRatesScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.RateDetailScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.view_model.ExchangeRatesViewModel
+import kamiltomczyk.recruitment.exchangeratesapp.navigation.extension.forCurrency
 import kamiltomczyk.recruitment.exchangeratesapp.navigation.routes.ExchangeRatesRoute
 
 @Composable
@@ -32,7 +33,7 @@ fun ExchangeRatesNavGraph(
                     ExchangeRatesScreen()
                 }
 
-                composable(route = ExchangeRatesRoute.Rate.path) { backStackEntry ->
+                composable(route = ExchangeRatesRoute.Rate.forCurrency()) { backStackEntry ->
                     RateDetailScreen(getCurrency(backStackEntry))
                 }
             }

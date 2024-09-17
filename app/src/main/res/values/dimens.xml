@@ -4,4 +4,5 @@
     <dimen name="info_text_size">12sp</dimen>
     <dimen name="standard_stroke_width">3dp</dimen>
     <dimen name="standard_padding">10dp</dimen>
+    <dimen name="standard_corner_radius">4dp</dimen>
 </resources>
