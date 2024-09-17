@@ -3,6 +3,8 @@ package kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -12,11 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import kamiltomczyk.recruitment.exchangeratesapp.R
+import kamiltomczyk.recruitment.exchangeratesapp.data.models.Currency
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
 import kamiltomczyk.recruitment.exchangeratesapp.data.providers.Providers
 import kamiltomczyk.recruitment.exchangeratesapp.data.states.UIState
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.view_model.ExchangeRatesViewModel
+import kamiltomczyk.recruitment.exchangeratesapp.navigation.extension.withCurrency
+import kamiltomczyk.recruitment.exchangeratesapp.navigation.routes.ExchangeRatesRoute
 import kamiltomczyk.recruitment.exchangeratesapp.ui.components.AppToolbar
+import kamiltomczyk.recruitment.exchangeratesapp.ui.components.InfoText
 import kamiltomczyk.recruitment.exchangeratesapp.ui.components.ProgressSpinner
 
 @Composable
@@ -44,9 +50,15 @@ fun ExchangeRatesScreen() {
             ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
                 ) {
-                    ExchangeRatesList(exchangeRatesList)
+                    ExchangeRates(
+                        currencyRates = exchangeRatesList,
+                        onCurrencyClickAction = { currency ->
+                            navController?.navigate(ExchangeRatesRoute.Rate.withCurrency(currency))
+                        }
+                    )
                     if (uiState == UIState.InProgress)
                         ProgressSpinner(modifier = Modifier.align(Alignment.Center))
                 }
@@ -56,6 +68,30 @@ fun ExchangeRatesScreen() {
 }
 
 @Composable
-fun ExchangeRatesList(currencyRatesState: List<CurrencyRate>?) {
+fun ExchangeRates(
+    currencyRates: List<CurrencyRate>?,
+    onCurrencyClickAction: (currency: Currency) -> Unit
+) {
+    if (currencyRates.isNullOrEmpty()) {
+        InfoText(
+            text = stringResource(id = R.string.no_currencies_info)
+        )
+    } else {
+        ExchangeRatesList(
+            currencyRates = currencyRates,
+            onCurrencyClickAction = onCurrencyClickAction
+        )
+    }
+}
 
+@Composable
+fun ExchangeRatesList(
+    currencyRates: List<CurrencyRate>,
+    onCurrencyClickAction: (currency: Currency) -> Unit
+) {
+    LazyColumn {
+        items(currencyRates) { rate ->
+
+        }
+    }
 }
