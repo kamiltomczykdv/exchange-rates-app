@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kamiltomczyk.recruitment.exchangeratesapp.data.base.BaseViewModel
+import kamiltomczyk.recruitment.exchangeratesapp.data.extension.sortByDate
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.CurrencyRate
 import kamiltomczyk.recruitment.exchangeratesapp.data.models.Rate
 import kamiltomczyk.recruitment.exchangeratesapp.data.repositories.CurrencyRepositoryInterface
@@ -34,11 +35,12 @@ class ExchangeRatesViewModel @Inject constructor(
 
     fun getRatesOfCurrencyOfLastTwoWeeks(tableName: String, code: String) {
         executeAsynchronousAction {
-            internalRatesState.value = currencyRepositoryInterface
+            val rates = currencyRepositoryInterface
                 .getRatesOfCurrencyOfLastTwoWeeks(
                     tableName = tableName,
                     code = code
                 )?.rates
+            internalRatesState.value = rates?.sortByDate()
         }
     }
 
