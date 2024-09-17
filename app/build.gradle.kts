@@ -53,10 +53,6 @@ android {
 }
 
 dependencies {
-    api(libs.mockk)
-    api(libs.mockk.android)
-    api(libs.junit)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -75,10 +71,8 @@ dependencies {
     implementation(libs.compose.hilt.navigation)
     implementation(libs.compose.navigation)
     implementation(libs.work.ktx)
-    implementation(libs.coroutines.test)
 
     testImplementation(libs.junit)
-    testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk)
     testImplementation(libs.android.core.testing)
