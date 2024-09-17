@@ -11,6 +11,7 @@ class DataConstants {
         const val DEFAULT_CODE_KEY = "USD"
         const val TABLE_KEY = "table"
         const val CODE_KEY = "code"
+        const val DEFAULT_RATE_VALUE = "0.0"
         const val START_DATE_KEY = "startDate"
         const val END_DATE_KEY = "endDate"
     }
