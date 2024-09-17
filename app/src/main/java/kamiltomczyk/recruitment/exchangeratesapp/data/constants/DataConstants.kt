@@ -18,4 +18,9 @@ class DataConstants {
         const val YEAR_FORMAT_VALUE = "yyyy-MM-dd"
         const val TWO_WEEKS_DAYS_NUMBER = 14
     }
+
+    object InternalKeys {
+        const val TABLE_INTERNAL_KEY = "table"
+        const val CODE_INTERNAL_KEY = "code"
+    }
 }
