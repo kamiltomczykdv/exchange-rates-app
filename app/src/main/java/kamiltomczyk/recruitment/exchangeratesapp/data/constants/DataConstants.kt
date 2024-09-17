@@ -23,4 +23,9 @@ class DataConstants {
         const val TABLE_INTERNAL_KEY = "table"
         const val CODE_INTERNAL_KEY = "code"
     }
+
+    object LayoutValues {
+        const val BACK_ARROW_ROTATION = 270f
+        const val ONE_LINE_LIMIT_NUMBER = 1
+    }
 }
