@@ -2,10 +2,13 @@ package kamiltomczyk.recruitment.exchangeratesapp.navigation.graph
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kamiltomczyk.recruitment.exchangeratesapp.data.constants.DataConstants
+import kamiltomczyk.recruitment.exchangeratesapp.data.models.Currency
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.ExchangeRatesScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.ui.RateDetailScreen
 import kamiltomczyk.recruitment.exchangeratesapp.features.exchange_rates.view_model.ExchangeRatesViewModel
@@ -22,8 +25,19 @@ fun ExchangeRatesNavGraph(
             ExchangeRatesScreen()
         }
 
-        composable(route = ExchangeRatesRoute.Rate.path) {
-            RateDetailScreen()
+        composable(route = ExchangeRatesRoute.Rate.path) { backStackEntry ->
+            RateDetailScreen(getCurrency(backStackEntry))
         }
     }
+}
+
+fun getCurrency(backStackEntry: NavBackStackEntry): Currency {
+    val tableName =
+        backStackEntry.arguments?.getString(DataConstants.InternalKeys.TABLE_INTERNAL_KEY)
+    val code = backStackEntry.arguments?.getString(DataConstants.InternalKeys.CODE_INTERNAL_KEY)
+
+    return Currency(
+        tableName = tableName,
+        code = code
+    )
 }
