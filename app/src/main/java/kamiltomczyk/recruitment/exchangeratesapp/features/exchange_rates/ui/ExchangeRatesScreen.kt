@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +33,10 @@ fun ExchangeRatesScreen() {
     val navController = Providers.localNavControllerProvider.current
     val uiState: UIState by viewModel.uiState
     val exchangeRatesList: List<CurrencyRate>? by viewModel.currencyRatesState
+
+    LaunchedEffect(Unit) {
+        viewModel.getCurrentExchangeRates()
+    }
 
     Scaffold(
         topBar = {
