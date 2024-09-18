@@ -38,13 +38,30 @@ fun ExchangeRatesScreen() {
         viewModel.getCurrentExchangeRates()
     }
 
+    ExchangeRatesView(
+        onBackClickAction = {
+            navController?.popBackStack()
+        },
+        currencyRates = exchangeRatesList,
+        onCurrencyClickAction = { currency ->
+            navController?.navigate(ExchangeRatesRoute.Rate.withCurrency(currency))
+        },
+        uiState = uiState
+    )
+}
+
+@Composable
+fun ExchangeRatesView(
+    onBackClickAction: () -> Unit,
+    currencyRates: List<CurrencyRate>?,
+    onCurrencyClickAction: (currency: Currency) -> Unit,
+    uiState: UIState
+) {
     Scaffold(
         topBar = {
             AppToolbar(
                 title = stringResource(id = R.string.exchange_rates_title),
-                onBackClickAction = {
-                    navController?.popBackStack()
-                }
+                onBackClickAction = onBackClickAction
             )
         },
         content = { padding ->
@@ -60,10 +77,8 @@ fun ExchangeRatesScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     ExchangeRates(
-                        currencyRates = exchangeRatesList,
-                        onCurrencyClickAction = { currency ->
-                            navController?.navigate(ExchangeRatesRoute.Rate.withCurrency(currency))
-                        }
+                        currencyRates = currencyRates,
+                        onCurrencyClickAction = onCurrencyClickAction
                     )
                     if (uiState == UIState.InProgress)
                         ProgressSpinner(modifier = Modifier.align(Alignment.Center))
