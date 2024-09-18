@@ -47,13 +47,26 @@ fun RateDetailScreen(currency: Currency) {
         )
     }
 
+    RateDetailView(
+        onBackClickAction = { navController?.popBackStack() },
+        currency = currency,
+        averageRates = averageRates,
+        uiState = uiState
+    )
+}
+
+@Composable
+fun RateDetailView(
+    onBackClickAction: () -> Unit,
+    currency: Currency,
+    averageRates: List<Rate>?,
+    uiState: UIState
+) {
     Scaffold(
         topBar = {
             AppToolbar(
                 title = stringResource(id = R.string.currency_details_title),
-                onBackClickAction = {
-                    navController?.popBackStack()
-                }
+                onBackClickAction = onBackClickAction
             )
         },
         content = { padding ->
